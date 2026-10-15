@@ -357,3 +357,15 @@ function mostrarEstado(mensaje) {
         estadoAudio.textContent = mensaje;
     }
 }
+// Cargar automáticamente el cuento al abrir la página
+window.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const respuesta = await fetch('./cuento-final.pdf');
+
+        if (!respuesta.ok) {
+            throw new Error('No se encontró el PDF del cuento.');
+        }
+
+        const datos = new Uint8Array(
+            await respuesta.arrayBuffer()
+        );
