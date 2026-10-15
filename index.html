@@ -25,7 +25,33 @@
         <!-- El flipbook se generará aquí -->
         <div id="flip-book" class="flip-book"></div>
     </div>
+<div class="audio-controls">
+    <h2>🎧 Escuchá el cuento</h2>
 
+    <div class="audio-buttons">
+        <button id="leer-cuento">▶ Escuchar</button>
+        <button id="pausar-cuento">⏸ Pausar</button>
+        <button id="reanudar-cuento">▶ Continuar</button>
+        <button id="detener-cuento">⏹ Detener</button>
+    </div>
+
+    <label for="volumen-cuento">
+        Volumen de la narración
+    </label>
+
+    <input
+        type="range"
+        id="volumen-cuento"
+        min="0"
+        max="1"
+        step="0.1"
+        value="1"
+    >
+
+    <p id="estado-audio" aria-live="polite">
+        Presioná Escuchar para comenzar.
+    </p>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
