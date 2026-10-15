@@ -358,14 +358,29 @@ function mostrarEstado(mensaje) {
     }
 }
 // Cargar automáticamente el cuento al abrir la página
-window.addEventListener('DOMContentLoaded', async function () {
+(async function () {
     try {
+        loading.style.display = 'block';
+        loading.textContent = 'Abriendo tu cuento...';
+
         const respuesta = await fetch('./cuento-final.pdf');
 
         if (!respuesta.ok) {
-            throw new Error('No se encontró el PDF del cuento.');
+            throw new Error('No se encontró cuento-final.pdf');
         }
 
         const datos = new Uint8Array(
             await respuesta.arrayBuffer()
         );
+
+        await loadPDF(datos);
+
+    } catch (error) {
+        console.error('Error al abrir el cuento:', error);
+
+        loading.style.display = 'block';
+        loading.textContent =
+            'No se pudo abrir el cuento automáticamente. ' +
+            'Podés seleccionarlo con el botón Cargar PDF.';
+    }
+})();
